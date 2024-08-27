@@ -21,7 +21,19 @@ app.post('/post', (req, res) => {
         content: content
     })
 
-    res.status(201).json({ message: 'Success' })
+    res.status(201).json({ message: 'Post Success' })
+})
+
+app.delete('/delete/:id', (req,res) => {
+    const { id } = req.params
+    const postId = parseInt(id, 10);
+    const index = postData.findIndex(post => post.id === postId)
+
+    if (index == -1)
+        return res.status(404).json({error:'not found'})
+
+    postData.splice(index,1)
+    res.status(200).json({ message: 'Delete Success' })
 })
 
 app.listen(3000, () => {
