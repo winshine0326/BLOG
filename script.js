@@ -1,19 +1,29 @@
 const express = require('express')
-const app = express()
-var cors = require('cors')
+const cors = require('cors')
 
+const app = express()
 app.use(cors())
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-})
-app.get('/sound/:name', function (req, res) {
-    const { name } = req.params
+app.use(express.json())
 
-    if(name == "dog")
-        res.json({'sound' : '멍멍'})
-    else if(name == "cat")
-        res.json({'sound' : '야옹'})
+let postData = []
+
+app.get('/get', (req, res) => {
+    res.json(postData)
 })
 
-app.listen(3000)
+app.post('/post', (req, res) => {
+    const { title, content } = req.body
+
+    postData.push({
+        id: postData.length + 1,
+        title: title,
+        content: content
+    })
+
+    res.status(201).json({ message: 'Success' })
+})
+
+app.listen(3000, () => {
+    console.log('Server is running')
+})

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/winshine0326/winshine-s-blog#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2"
   }
