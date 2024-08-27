@@ -1,0 +1,19 @@
+{
+  "name": "winshine0326",
+  "version": "1.0.0",
+  "description": "personal blog",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winshine0326/winshine-s-blog.git"
+  },
+  "author": "winshine0326",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winshine0326/winshine-s-blog/issues"
+  },
+  "homepage": "https://github.com/winshine0326/winshine-s-blog#readme"
+}
