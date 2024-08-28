@@ -26,7 +26,7 @@ app.post('/post', (req, res) => {
 
 app.delete('/delete/:id', (req,res) => {
     const { id } = req.params
-    const postId = parseInt(id, 10);
+    const postId = parseInt(id, 10)
     const index = postData.findIndex(post => post.id === postId)
 
     if (index == -1)
@@ -34,6 +34,20 @@ app.delete('/delete/:id', (req,res) => {
 
     postData.splice(index,1)
     res.status(200).json({ message: 'Delete Success' })
+})
+
+app.put('/put/:id', (req,res) => {
+    const { id } = req.params
+    const postId = parseInt(id, 10)
+    const { title,content }= req.body
+    // console.log(id)
+    const index = postData.findIndex(post => post.id === postId)
+    // console.log(index)
+    if (index == -1)
+        return res.status(404).json({error:'not found'})
+
+    postData[index] = {id: postId, title: title, content: content}
+    res.status(200).json({ message: 'Put Success' })
 })
 
 app.listen(3000, () => {
