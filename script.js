@@ -1,14 +1,16 @@
-const express = require('express')
+// 주석으로 한줄 한줄 달아보기
+
+const express = require('express') // node.js에서 웹 서버를 쉽게 구축하기 위한 프레임 워크
 const cors = require('cors')
 
-const app = express()
-app.use(cors())
+const app = express() //app이라는 이름의 express
+app.use(cors()) // 다른 도메인의 리소스를 요청할 수 있도록 허용(url이 바뀔 때 요청이 차단되지 않도록 함.)
 
-app.use(express.json())
+app.use(express.json()) //body-parser 대신 사용
 
 let postData = []
 
-app.get('/get', (req, res) => {
+app.get('/get', (req, res) => { //get이라는 url로 들어가는 요청에 대해 어떤 작업을 수행할지 관리(라우팅 관리)
     res.json(postData)
 })
 
