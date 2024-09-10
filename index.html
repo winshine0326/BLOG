@@ -32,41 +32,49 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-        <script>
-            async function loadPosts() {
-                try {
-                    const response = await fetch('http://localhost:3000/get');
-                    if (response.ok) {
-                        const posts = await response.json();
-    
-                        const contentBox = document.getElementById('contentBox');
-                        contentBox.innerHTML = '';
-    
-                        if (posts.length === 0) {
-                            contentBox.innerHTML = '<p>작성된 글이 없습니다.</p>';
-                        } else {
-                            posts.forEach(post => {
-                                const postDiv = document.createElement('div');
-                                postDiv.classList.add('post');
-    
-                                postDiv.innerHTML = `
-                                    <h2>${post.title}</h2>
-                                    <p>${post.content}</p>
+    <script>
+        async function loadPosts() {
+            try {
+                const response = await fetch('http://localhost:3000/get');
+                if (response.ok) {
+                    const posts = await response.json();
+
+                    const contentBox = document.getElementById('contentBox');
+                    contentBox.innerHTML = '';
+
+                    if (posts.length === 0) {
+                        contentBox.innerHTML = '<p>작성된 글이 없습니다.</p>';
+                    } else {
+                        posts.forEach(post => {
+                            const postDiv = document.createElement('div');
+                            postDiv.classList.add('post');
+
+                            postDiv.innerHTML = `
+                            <div>
+                                <h2>${post.title}</h2>
+                                <div style="display:flex; justify-content:space-between;">
+                                <p>${post.content}</p>
+                                <div style="position:relative; bottom:20px;">
+                                    <button class="btn btn-danger" onclick="delPosts()">삭제하기</button>
+                                    <button class="btn btn-primary" onclick="updatePosts()">수정하기</button>
+                                </div>
+                                </div>
+                            </div>
                                 `;
 
-                                contentBox.appendChild(postDiv);
-                            });
-                        }
-                    } else {
-                        alert('글을 불러오는 데 실패했습니다.');
+                            contentBox.appendChild(postDiv);
+                        });
                     }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('서버와의 통신에 문제가 발생했습니다.');
+                } else {
+                    alert('글을 불러오는 데 실패했습니다.');
                 }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('서버와의 통신에 문제가 발생했습니다.');
             }
-            window.onload = loadPosts;
-        </script>
+        }
+        window.onload = loadPosts;
+    </script>
 </body>
 
 </html>
