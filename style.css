@@ -38,4 +38,5 @@ nav{
     word-break: break-all;
     word-wrap: break-word;
     font-size: larger;
+    padding-left: 10px;
 }
